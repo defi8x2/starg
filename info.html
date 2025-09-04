@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BCL Lottery - Information</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #111, #222, #333);
+      color: #FFD700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .logo-btn {
+      width: 120px;
+      height: 120px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    .logo-btn img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+       @keyframes heartbeat {
+      0%   { transform: scale(1); }
+      25%  { transform: scale(1.15); }
+      40%  { transform: scale(1); }
+      60%  { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin: 10px 0;
+      color: #FFD700;
+      text-shadow: 0px 0px 10px #ff8c00;
+    }
+
+    .info-box {
+      width: 100%;
+      max-width: 350px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .info-box h2 {
+      color: #ffdf00;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .info-box p {
+      font-size: 16px;
+      color: #f5f5f5;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+  
+    @media (max-width: 600px) {
+      .logo-btn {
+        width: 65px;
+        height: 65px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .info-box {
+        padding: 15px;
+      }
+      .info-box h2 {
+        font-size: 18px;
+      }
+      .info-box p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  
+    <a href="index.html" class="logo-btn">
+      <img src="green.png" alt="BLO Lottery Logo">
+    </a>
+  </header>
+
+  <h1>📢 Latest Information</h1>
+
+  <div class="info-box">
+    <h2>🔥 Special Offer</h2>
+    <p>Invite 6 direct referrals and receive <b> 10 POL (Polygon) directly in your wallet as a gift! 
+  </b> </p>
+  </div>
+
+  <div class="info-box">
+    <h2>🎯 Next Lottery</h2>
+    <p>Next POOL3 round start <b>6th November 2025</b> .</p>
+  </div>
+
+  <footer>
+    © 2025 Blockchain Lottery. All Rights Reserved.
+  </footer>
+</body>
+</html>

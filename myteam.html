@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Team</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.7.5/dist/web3.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #111; color: white; text-align: center; }
+    header { background: #222; padding: 15px; font-size: 20px; font-weight: bold; }
+    button { background: #4CAF50; color: #fff; padding: 12px; border: none; border-radius: 8px; font-size: 16px; margin: 10px auto; width: 90%; max-width: 300px; cursor: pointer; }
+    button:hover { background: #45a049; }
+    .card { background: #222; margin: 15px auto; padding: 15px; border-radius: 12px; width: 90%; max-width: 350px; text-align: left; }
+    .card h3 { margin: 0 0 10px 0; font-size: 16px; color: #ffd700; }
+    .card p { margin: 5px 0; font-size: 14px; word-break: break-word; }
+    .back-btn { background: #008CBA; }
+    .back-btn:hover { background: #007bb5; }
+  </style>
+</head>
+<body>
+  <header>𝘽𝙇𝙊𝘾𝙆𝘾𝙃𝘼𝙄𝙉 𝙇𝙊𝙏𝙏𝙀𝙍𝙔</header>
+
+  <button id="connect-btn">𝐋𝐎𝐀𝐃 𝐌𝐘 𝐀𝐋𝐋 𝐓𝐄𝐀𝐌</button>
+
+  <div class="card">
+    <h3>𝐃𝐈𝐑𝐄𝐂𝐓 𝐓𝐄𝐀𝐌</h3>
+    <p id="directTeam">—</p>
+  </div>
+
+  <div class="card">
+    <h3>𝐋𝐄𝐕𝐄𝐋 2 𝐓𝐄𝐀𝐌</h3>
+    <p id="level2Team">—</p>
+  </div>
+
+  <div class="card">
+    <h3>𝐋𝐄𝐕𝐄𝐋 3 𝐓𝐄𝐀𝐌</h3>
+    <p id="level3Team">—</p>
+  </div>
+
+  <button class="back-btn" onclick="goHome()">𝐁𝐀𝐂𝐊 𝐓𝐎 𝐇𝐎𝐌𝐄</button>
+
+  <script>
+    const POLYGON_CHAIN_ID = "0x89"; // Polygon Mainnet
+    const contractAddress = "0xE2d6Fe40b8D3bDe69C5D279299C673a9a7655D11"; 
+    const abi = [[{"inputs":[{"internalType":"address","name":"_lotteryPool","type":"address"},{"internalType":"address","name":"_rewardToken","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"userID","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"refID","type":"uint256"}],"name":"Joined","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"oldWallet","type":"address"},{"indexed":false,"internalType":"address","name":"newWallet","type":"address"}],"name":"LotteryPoolChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"pool","type":"address"},{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"PoolPaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"level","type":"uint256"}],"name":"ReferralPaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"TokensRewarded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"winner","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"WinnerPaid","type":"event"},{"inputs":[],"name":"DIRECT_TOKEN_REWARD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"LEVEL2_TOKEN_REWARD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"LEVEL3_TOKEN_REWARD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAX_USERS","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getDirectTeam","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getLevel2Team","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getLevel3Team","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getTeamCount","outputs":[{"internalType":"uint256","name":"directCount","type":"uint256"},{"internalType":"uint256","name":"level2Count","type":"uint256"},{"internalType":"uint256","name":"level3Count","type":"uint256"},{"internalType":"uint256","name":"totalTeam","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"idToUser","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"refID","type":"uint256"}],"name":"join","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"joinAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lotteryPool","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextID","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"winner","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"payWinner","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"refBy","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"rewardToken","outputs":[{"internalType":"contract IRewardToken","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_newPool","type":"address"}],"name":"setLotteryPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"userCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"userIDs","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"userReferrals","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]];
+
+    let web3, contract, userAccount;
+
+    async function connectAndLoad() {
+      if (!window.ethereum) return alert("Please install MetaMask!");
+      await ethereum.request({ method: "eth_requestAccounts" });
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+      if (chainId !== POLYGON_CHAIN_ID) {
+        return alert("Switch your MetaMask network to Polygon Mainnet!");
+      }
+      web3 = new Web3(window.ethereum);
+      const accounts = await web3.eth.getAccounts();
+      userAccount = accounts[0];
+      contract = new web3.eth.Contract(abi, contractAddress);
+
+      loadTeam();
+    }
+
+  async function loadTeam() {
+  try {
+    const [d, l2, l3] = await Promise.all([
+      contract.methods.getDirectTeam(userAccount).call(),
+      contract.methods.getLevel2Team(userAccount).call(),
+      contract.methods.getLevel3Team(userAccount).call()
+    ]);
+
+    document.getElementById("directTeam").innerText = d.length + " Members";
+    document.getElementById("level2Team").innerText = l2.length + " Members";
+    document.getElementById("level3Team").innerText = l3.length + " Members";
+
+  } catch (err) {
+    console.error("Error loading team data:", err);
+    alert("Error loading team data:\n" + (err.message || err));
+  }
+}
+
+    function goHome() {
+      window.location.href = "index.html"; 
+    }
+
+    document.getElementById("connect-btn").onclick = connectAndLoad;
+  </script>
+</body>
+</html>
